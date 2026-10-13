@@ -3,18 +3,23 @@
    Lógica de la compuerta de edad (+18).
 
    Qué hace:
-   1. Al entrar, SIEMPRE pregunta "¿Tenés 18 años o más?".
-   2. Si responde "Sí": muestra el sitio.
+   1. Al entrar por primera vez en la sesión, pregunta
+      "¿Tenés 18 años o más?".
+   2. Si responde "Sí": guarda la decisión en sessionStorage
+      y muestra el sitio. Mientras la pestaña siga abierta,
+      no vuelve a preguntar al navegar entre páginas.
    3. Si responde "No": muestra un mensaje y bloquea el acceso.
    4. Mantiene el foco atrapado dentro del modal (accesibilidad).
 
-   Nota legal: no se guarda la respuesta, para que la pregunta
-   aparezca en cada visita.
+   Nota: sessionStorage se borra al cerrar la pestaña, así que
+   cada nueva visita arranca preguntando de nuevo.
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
   // ---------- 1. Referencias a los elementos del DOM ----------
+  var CLAVE_EDAD = 'anden_mayor_de_edad'; // clave usada en sessionStorage
+
   var compuerta  = document.getElementById('compuerta-edad');
   var pregunta   = document.getElementById('compuerta-pregunta');
   var rechazo    = document.getElementById('compuerta-rechazo');
@@ -26,20 +31,26 @@ document.addEventListener('DOMContentLoaded', function () {
   // para devolvérselo al cerrar (buena práctica de accesibilidad).
   var elementoPrevio = document.activeElement;
 
-  // El sitio arranca bloqueado (body.bloqueado en el HTML).
-  // Llevamos el foco al primer botón del modal.
+  // ---------- 2. Si ya confirmó en esta sesión, entrar directo ----------
+  if (sessionStorage.getItem(CLAVE_EDAD) === 'si') {
+    liberarAcceso(false); // false = no hace falta devolver el foco
+    return;               // no seguimos: la compuerta no se activa
+  }
+
+  // El sitio sigue bloqueado: llevamos el foco al primer botón del modal
   botonSi.focus();
 
-  // ---------- 2. Respuestas del visitante ----------
-  // Botón "Sí": mostrar el sitio
+  // ---------- 3. Respuestas del visitante ----------
+  // Botón "Sí": guardar decisión y mostrar el sitio
   botonSi.addEventListener('click', function () {
+    sessionStorage.setItem(CLAVE_EDAD, 'si');
     liberarAcceso(true);
   });
 
   // Botón "No": mostrar el mensaje de acceso denegado
   botonNo.addEventListener('click', mostrarRechazo);
 
-  // ---------- 3. Funciones ----------
+  // ---------- 4. Funciones ----------
 
   // Saca la clase que oculta el contenido y cierra el modal
   function liberarAcceso(devolverFoco) {
@@ -62,8 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Trampa de foco: evita que la tecla Tab salga del modal.
-  // Si el foco está en el último elemento y se aprieta Tab,
-  // vuelve al primero (y al revés con Shift+Tab).
   function atraparFoco(evento) {
     if (evento.key !== 'Tab') { return; }
 
