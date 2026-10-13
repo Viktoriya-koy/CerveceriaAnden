@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <!-- viewport es obligatorio para que el diseño responsive funcione en celulares -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANDÉN · Cervecería Artesanal</title>
+  <!-- Descripción que aparece en buscadores y al compartir el enlace -->
+  <meta name="description" content="ANDÉN, cervecería artesanal argentina en formación. Fábrica y marca de cerveza con identidad ferroviaria." />
+  <link rel="stylesheet" href="styles.css" />
+<base target="_blank">
+</head>
+
+<!-- La clase 'bloqueado' se quita con JavaScript cuando el visitante confirma su edad -->
+<body class="bloqueado">
+
+  <!-- Enlace oculto visible solo con teclado: permite saltar directo al contenido -->
+  <a class="salto-contenido" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- ==========================================================
+       COMPUERTA DE EDAD (+18)
+       - Es un modal accesible: role="dialog", aria-modal,
+         foco atrapado dentro y navegación con teclado.
+       ========================================================== -->
+  <div class="compuerta-edad" id="compuerta-edad" role="dialog" aria-modal="true" aria-labelledby="titulo-compuerta">
+    <div class="compuerta-caja">
+
+      <!-- Paso 1: la pregunta -->
+      <div id="compuerta-pregunta">
+        <p class="compuerta-kicker">Cervecería artesanal</p>
+        <h1 class="compuerta-titulo" id="titulo-compuerta">¿Tenés 18 años o más?</h1>
+        <p class="compuerta-texto">Este sitio es solo para mayores de edad.</p>
+        <div class="compuerta-acciones">
+          <button type="button" class="boton boton-primario" id="boton-si">Sí</button>
+          <button type="button" class="boton boton-secundario" id="boton-no">No</button>
+        </div>
+      </div>
+
+      <!-- Paso 2: mensaje de rechazo (oculto hasta que se necesite) -->
+      <div id="compuerta-rechazo" hidden>
+        <h2 class="compuerta-titulo" id="titulo-rechazo">No podés ingresar</h2>
+        <p class="compuerta-texto">Este sitio es solo para mayores de 18 años. Gracias por tu comprensión.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       ENCABEZADO: logo textual y navegación principal
+       ========================================================== -->
+  <header class="encabezado">
+    <div class="contenedor encabezado-interno">
+      <a class="logo" href="#inicio" aria-label="ANDÉN, ir al inicio">ANDÉN</a>
+      <nav class="navegacion" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#cervezas">Cervezas</a></li>
+          <li><a href="#historia">Historia</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       CONTENIDO PRINCIPAL DE LA HOME
+       ========================================================== -->
+  <main id="contenido">
+
+    <!-- Hero: presentación de la marca -->
+    <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+      <div class="contenedor">
+        <p class="hero-kicker">Cervecería artesanal</p>
+        <h1 class="hero-titulo" id="titulo-hero">Cerveza de estación, hecha con oficio.</h1>
+        <p class="hero-frase">Elaboramos cerveza como antes: despacio, con hierro y con paciencia.</p>
+        <a class="boton boton-primario" href="#cervezas">Ver cervezas</a>
+      </div>
+    </section>
+
+    <!-- Cervezas: tarjetas de ejemplo con datos placeholder -->
+    <section class="cervezas" id="cervezas" aria-labelledby="titulo-cervezas">
+      <div class="contenedor">
+        <h2 class="seccion-titulo" id="titulo-cervezas">Nuestras cervezas</h2>
+        <p class="seccion-texto">Primeras recetas en desarrollo. Estos son los estilos que estamos afinando en la fábrica.</p>
+
+        <div class="cervezas-lista">
+
+          <!-- Tarjeta 1 -->
+          <article class="tarjeta">
+            <!-- Etiqueta visual de relleno; el texto alternativo la describe -->
+            <div class="tarjeta-etiqueta tarjeta-etiqueta--roja" role="img" aria-label="Etiqueta de color rojo óxido de la cerveza Caldén"></div>
+            <h3 class="tarjeta-nombre">Caldén</h3>
+            <p class="tarjeta-estilo">Roja robusta</p>
+            <p class="tarjeta-detalle">Notas a caramelo y pan tostado. Cuerpo pleno.</p>
+            <p class="tarjeta-graduacion">5,5% vol. de alcohol</p>
+          </article>
+
+          <!-- Tarjeta 2 -->
+          <article class="tarjeta">
+            <div class="tarjeta-etiqueta tarjeta-etiqueta--dorada" role="img" aria-label="Etiqueta de color dorado viejo de la cerveza Quinto"></div>
+            <h3 class="tarjeta-nombre">Quinto</h3>
+            <p class="tarjeta-estilo">Rubia lupulada</p>
+            <p class="tarjeta-detalle">Aromática y fresca. Amargor medio.</p>
+            <p class="tarjeta-graduacion">5,0% vol. de alcohol</p>
+          </article>
+
+          <!-- Tarjeta 3 -->
+          <article class="tarjeta">
+            <div class="tarjeta-etiqueta tarjeta-etiqueta--negra" role="img" aria-label="Etiqueta de color verde oscuro de la cerveza Estación"></div>
+            <h3 class="tarjeta-nombre">Estación</h3>
+            <p class="tarjeta-estilo">Negra tostada</p>
+            <p class="tarjeta-detalle">Café y chocolate amargo. Final seco.</p>
+            <p class="tarjeta-graduacion">6,0% vol. de alcohol</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================
+       PIE DE PÁGINA: aviso +18 y contacto placeholder
+       ========================================================== -->
+  <footer class="pie" id="contacto">
+    <div class="contenedor pie-interno">
+      <p class="pie-aviso">Prohibida la venta a menores de 18 años. Bebé con moderación.</p>
+      <!-- <address> indica que es información de contacto -->
+      <address class="pie-contacto">
+        <p>contacto@anden.com.ar</p>
+        <p>Estación Central, Argentina</p>
+      </address>
+    </div>
+  </footer>
+
+  <!-- El script va al final para que el HTML cargue primero -->
+  <script src="script.js"></script>
+</body>
+</html>
