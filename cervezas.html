@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cervezas · ANDÉN</title>
+  <meta name="description" content="Catálogo de cervezas artesanales de ANDÉN. Estilos, graduación y notas de cata." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bloqueado">
+
+  <a class="salto-contenido" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- COMPUERTA DE EDAD (idéntica a la del index) -->
+  <div class="compuerta-edad" id="compuerta-edad" role="dialog" aria-modal="true" aria-labelledby="titulo-compuerta">
+    <div class="compuerta-caja">
+      <div id="compuerta-pregunta">
+        <p class="compuerta-kicker">Boleto de entrada · Cervecería artesanal</p>
+        <h1 class="compuerta-titulo" id="titulo-compuerta">¿Tenés 18 años o más?</h1>
+        <p class="compuerta-texto">Este sitio es solo para mayores de edad.</p>
+        <div class="compuerta-acciones">
+          <button type="button" class="boton boton-primario" id="boton-si">Sí</button>
+          <button type="button" class="boton boton-secundario" id="boton-no">No</button>
+        </div>
+      </div>
+      <div id="compuerta-rechazo" hidden>
+        <h2 class="compuerta-titulo" id="titulo-rechazo">No podés ingresar</h2>
+        <p class="compuerta-texto">Este sitio es solo para mayores de 18 años. Gracias por tu comprensión.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO (mismo que index, pero "Cervezas" está marcado como actual) -->
+  <header class="encabezado">
+    <div class="contenedor encabezado-interno">
+      <a class="logo" href="index.html" aria-label="ANDÉN, ir al inicio">
+        <svg class="logo-icono" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M12 2C8.7 2 7 2.8 7 4v7c0 1.2 2.1 2 5 2s5-.8 5-2V4c0-1.2-1.7-2-5-2zM5 5v5H3V5h2zm14 0h2v5h-2V5zM6.5 15a1.8 1.8 0 1 1 0 3.6A1.8 1.8 0 0 1 6.5 15zm11 0a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM4 20.5h16V22H4v-1.5z"/>
+        </svg>
+        <span>ANDÉN</span>
+      </a>
+      <nav class="navegacion" aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="cervezas.html" aria-current="page">Cervezas</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- Franja de título de la página -->
+    <section class="pagina-encabezado" aria-labelledby="titulo-pagina">
+      <div class="contenedor">
+        <p class="hero-cartel">Catálogo</p>
+        <h1 class="hero-titulo" id="titulo-pagina">Nuestras cervezas</h1>
+        <p class="hero-frase">Recetas en desarrollo. Cada estilo lleva el nombre de un lugar de la zona.</p>
+      </div>
+    </section>
+
+    <div class="via" aria-hidden="true"></div>
+
+    <!-- Catálogo completo -->
+    <section class="cervezas" aria-labelledby="titulo-catalogo">
+      <div class="contenedor">
+        <h2 class="seccion-titulo" id="titulo-catalogo">Estilos disponibles</h2>
+        <p class="seccion-texto">Producimos en lotes chicos. La disponibilidad puede variar según la temporada.</p>
+
+        <div class="cervezas-lista">
+
+          <article class="tarjeta">
+            <div class="tarjeta-etiqueta tarjeta-etiqueta--roja" role="img" aria-label="Etiqueta de color rojo óxido de la cerveza Caldén"></div>
+            <h3 class="tarjeta-nombre">Caldén</h3>
+            <p class="tarjeta-estilo">Roja robusta</p>
+            <p class="tarjeta-detalle">Notas a caramelo y pan tostado. Cuerpo pleno.</p>
+            <p class="tarjeta-graduacion">5,5% vol. de alcohol</p>
+          </article>
+
+          <article class="tarjeta">
+            <div class="tarjeta-etiqueta tarjeta-etiqueta--dorada" role="img" aria-label="Etiqueta de color dorado viejo de la cerveza Quinto"></div>
+            <h3 class="tarjeta-nombre">Quinto</h3>
+            <p class="tarjeta-estilo">Rubia lupulada</p>
+            <p class="tarjeta-detalle">Aromática y fresca. Amargor medio.</p>
+            <p class="tarjeta-graduacion">5,0% vol. de alcohol</p>
+          </article>
+
+          <article class="tarjeta">
+            <div class="tarjeta-etiqueta tarjeta-etiqueta--negra" role="img" aria-label="Etiqueta de color verde oscuro de la cerveza Estación"></div>
+            <h3 class="tarjeta-nombre">Estación</h3>
+            <p class="tarjeta-estilo">Negra tostada</p>
+            <p class="tarjeta-detalle">Café y chocolate amargo. Final seco.</p>
+            <p class="tarjeta-graduacion">6,0% vol. de alcohol</p>
+          </article>
+
+          <!-- Las próximas cervezas las agregamos acá cuando existan -->
+
+        </div>
+      </div>
+    </section>
+
+    <div class="via" aria-hidden="true"></div>
+
+  </main>
+
+  <footer class="pie" id="contacto">
+    <div class="contenedor pie-interno">
+      <p class="pie-aviso">Prohibida la venta a menores de 18 años. Bebé con moderación.</p>
+      <address class="pie-contacto">
+        <p>contacto@anden.com.ar</p>
+        <p>Estación Central, Argentina</p>
+      </address>
+      <p class="pie-credito">Fotografías de archivo: estaciones ferroviarias argentinas, circa 1900 (dominio público).</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
