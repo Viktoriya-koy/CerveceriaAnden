@@ -131,6 +131,14 @@ button:focus-visible,
   background: rgba(18, 38, 27, 0.94); /* verde muy oscuro con leve transparencia */
   color: var(--crema);
 }
+
+/* Cuando JavaScript le pone el atributo hidden a la compuerta,
+   esta regla gana por especificidad sobre el display: grid de arriba.
+   Así ocultamos el modal sin usar !important. */
+.compuerta-edad[hidden] {
+  display: none;
+}
+
 .compuerta-caja {
   width: min(100%, 26rem);
   padding: 2rem 1.5rem;
@@ -167,7 +175,6 @@ body.bloqueado main,
 body.bloqueado .pie {
   display: none;
 }
-
 /* ---------- 7. Encabezado ---------- */
 .encabezado {
   background: var(--verde-oscuro);
