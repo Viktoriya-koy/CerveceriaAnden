@@ -3,18 +3,18 @@
    Lógica de la compuerta de edad (+18).
 
    Qué hace:
-   1. Al entrar, pregunta "¿Tenés 18 años o más?".
-   2. Si responde "Sí": guarda la decisión en localStorage
-      y muestra el sitio (no vuelve a preguntar).
+   1. Al entrar, SIEMPRE pregunta "¿Tenés 18 años o más?".
+   2. Si responde "Sí": muestra el sitio.
    3. Si responde "No": muestra un mensaje y bloquea el acceso.
    4. Mantiene el foco atrapado dentro del modal (accesibilidad).
+
+   Nota legal: no se guarda la respuesta, para que la pregunta
+   aparezca en cada visita.
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
   // ---------- 1. Referencias a los elementos del DOM ----------
-  var CLAVE_EDAD = 'anden_mayor_de_edad'; // clave usada en localStorage
-
   var compuerta  = document.getElementById('compuerta-edad');
   var pregunta   = document.getElementById('compuerta-pregunta');
   var rechazo    = document.getElementById('compuerta-rechazo');
@@ -26,27 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // para devolvérselo al cerrar (buena práctica de accesibilidad).
   var elementoPrevio = document.activeElement;
 
-  // ---------- 2. Si ya confirmó antes, entrar directo ----------
-  // localStorage guarda texto; comparamos con 'si'.
-  if (localStorage.getItem(CLAVE_EDAD) === 'si') {
-    liberarAcceso(false); // false = no hace falta devolver el foco
-    return;               // no seguimos: la compuerta no se activa
-  }
-
-  // El sitio sigue bloqueado: llevamos el foco al primer botón del modal
+  // El sitio arranca bloqueado (body.bloqueado en el HTML).
+  // Llevamos el foco al primer botón del modal.
   botonSi.focus();
 
-  // ---------- 3. Respuestas del visitante ----------
-  // Botón "Sí": guardar decisión y mostrar el sitio
+  // ---------- 2. Respuestas del visitante ----------
+  // Botón "Sí": mostrar el sitio
   botonSi.addEventListener('click', function () {
-    localStorage.setItem(CLAVE_EDAD, 'si');
     liberarAcceso(true);
   });
 
   // Botón "No": mostrar el mensaje de acceso denegado
   botonNo.addEventListener('click', mostrarRechazo);
 
-  // ---------- 4. Funciones ----------
+  // ---------- 3. Funciones ----------
 
   // Saca la clase que oculta el contenido y cierra el modal
   function liberarAcceso(devolverFoco) {
