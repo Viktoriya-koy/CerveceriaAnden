@@ -187,6 +187,7 @@ body.bloqueado main,
 body.bloqueado .pie {
   display: none;
 }
+
 /* ---------- 7. Encabezado ---------- */
 /* Cartel de estación: verde oscuro con filete dorado */
 .encabezado {
@@ -236,6 +237,10 @@ body.bloqueado .pie {
 .navegacion a:hover {
   border-color: var(--dorado);
 }
+/* La página actual queda marcada con un subrayado dorado permanente */
+.navegacion a[aria-current="page"] {
+  border-color: var(--dorado);
+}
 
 /* ---------- 8. Hero: estación de trenes de fondo ---------- */
 /* Foto de archivo de una estación argentina (ca. 1900) con un
@@ -279,6 +284,15 @@ body.bloqueado .pie {
   margin-inline: auto;
   font-size: 1.125rem;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Franja de título para páginas internas (como cervezas.html).
+   Usa la misma estética del hero pero más compacta y sin foto. */
+.pagina-encabezado {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  color: var(--crema);
+  background-color: var(--verde-oscuro);
 }
 
 /* ---------- 9. Vía férrea: separador decorativo ---------- */
@@ -349,10 +363,19 @@ body.bloqueado .pie {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.tarjeta-detalle {
+  margin-bottom: 0.5em;
+}
 .tarjeta-graduacion {
   margin-bottom: 0;
   color: #555555;
   font-size: 0.875rem;
+}
+
+/* Botón grande al final del bloque de cervezas destacadas del index */
+.cervezas-cta {
+  margin-top: 2rem;
+  text-align: center;
 }
 
 /* ---------- 11. Pie de página ---------- */
