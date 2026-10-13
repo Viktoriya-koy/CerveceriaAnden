@@ -138,6 +138,14 @@ button:focus-visible,
   background-size: cover;
   background-position: center;
 }
+
+/* Cuando JavaScript le pone el atributo hidden a la compuerta,
+   esta regla gana por especificidad (clase + atributo) sobre el
+   display: grid de .compuerta-edad. Así se oculta sin !important. */
+.compuerta-edad[hidden] {
+  display: none;
+}
+
 /* La caja tiene forma de boleto: doble borde crema y línea cortada */
 .compuerta-caja {
   width: min(100%, 26rem);
@@ -179,7 +187,6 @@ body.bloqueado main,
 body.bloqueado .pie {
   display: none;
 }
-
 /* ---------- 7. Encabezado ---------- */
 /* Cartel de estación: verde oscuro con filete dorado */
 .encabezado {
