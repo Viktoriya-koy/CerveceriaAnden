@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ANDÉN · Cervecería Artesanal Argentina</title>
-  <meta name="description" content="ANDÉN, cervecería artesanal argentina. El sabor de lo artesanal, la esencia de nuestra ciudad. Cerveza para compartir, con identidad ferroviaria." />
+  <title>Hacer un pedido · ANDÉN</title>
+  <meta name="description" content="Hacé tu pedido de cerveza artesanal ANDÉN. Menos de 6 botellas por WhatsApp, 6 o más por formulario." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
@@ -12,9 +12,7 @@
 
   <a class="salto-contenido" href="#contenido">Saltar al contenido principal</a>
 
-  <!-- ==========================================================
-       COMPUERTA DE EDAD (+18)
-       ========================================================== -->
+  <!-- COMPUERTA DE EDAD -->
   <div class="compuerta-edad" id="compuerta-edad" role="dialog" aria-modal="true" aria-labelledby="titulo-compuerta">
     <div class="compuerta-caja">
       <div id="compuerta-pregunta">
@@ -33,20 +31,16 @@
     </div>
   </div>
 
-  <!-- ==========================================================
-       ENCABEZADO
-       ========================================================== -->
+  <!-- ENCABEZADO -->
   <header class="encabezado">
     <div class="contenedor encabezado-interno">
       <a class="logo" href="index.html" aria-label="ANDÉN, ir al inicio">
-        <svg class="logo-icono" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M12 2C8.7 2 7 2.8 7 4v7c0 1.2 2.1 2 5 2s5-.8 5-2V4c0-1.2-1.7-2-5-2zM5 5v5H3V5h2zm14 0h2v5h-2V5zM6.5 15a1.8 1.8 0 1 1 0 3.6A1.8 1.8 0 0 1 6.5 15zm11 0a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM4 20.5h16V22H4v-1.5z"/>
-        </svg>
+        <img class="logo-imagen" src="img/logo-anden.png" alt="" aria-hidden="true" />
         <span>ANDÉN</span>
       </a>
       <nav class="navegacion" aria-label="Navegación principal">
         <ul>
-          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="index.html">Inicio</a></li>
           <li><a href="cervezas.html">Cervezas</a></li>
           <li><a href="index.html#contacto">Contacto</a></li>
         </ul>
@@ -54,52 +48,119 @@
     </div>
   </header>
 
-  <!-- ==========================================================
-       HOME
-       ========================================================== -->
   <main id="contenido">
 
-    <!-- Hero -->
-    <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+    <!-- Franja de título -->
+    <section class="pagina-encabezado" aria-labelledby="titulo-pagina">
       <div class="contenedor">
-        <p class="hero-cartel">Cervecería artesanal argentina</p>
-        <h1 class="hero-titulo" id="titulo-hero">El sabor de lo artesanal, la esencia de nuestra ciudad</h1>
-        <p class="hero-frase">Cerveza artesanal para compartir, con la identidad de nuestro patrimonio ferroviario.</p>
-        <a class="boton boton-primario" href="cervezas.html">Ver cervezas</a>
+        <p class="hero-cartel">Boleto de pedido</p>
+        <h1 class="hero-titulo" id="titulo-pagina">Hacer un pedido</h1>
+        <p class="hero-frase">Elegí tus cervezas. Con menos de 6 botellas te llevamos a WhatsApp; con 6 o más, completás el formulario.</p>
       </div>
     </section>
 
     <div class="via" aria-hidden="true"></div>
 
-    <!-- Presentación breve -->
-    <section class="presentacion" aria-labelledby="titulo-presentacion">
+    <!-- Formulario -->
+    <section class="pedido" aria-labelledby="titulo-formulario">
       <div class="contenedor">
-        <h2 class="seccion-titulo" id="titulo-presentacion">Una fábrica con nombre de andén</h2>
-        <p class="seccion-texto">
-          Andén es una fábrica y marca de cerveza artesanal argentina en formación.
-          Producimos en lotes chicos, con recetas propias y la identidad del
-          patrimonio ferroviario que nos vio crecer.
-        </p>
-      </div>
-    </section>
+        <h2 class="seccion-titulo" id="titulo-formulario">Tu pedido</h2>
+        <p class="seccion-texto">Producimos en lotes chicos. Al confirmar el pedido te escribimos para coordinar pago y entrega.</p>
 
-    <div class="via" aria-hidden="true"></div>
+        <form class="formulario-pedido" id="formulario-pedido" novalidate>
 
-    <!-- Primeras recetas: foto grupal -->
-    <section class="cervezas" id="cervezas" aria-labelledby="titulo-cervezas">
-      <div class="contenedor">
-        <h2 class="seccion-titulo" id="titulo-cervezas">Nuestras primeras recetas</h2>
-        <p class="seccion-texto">Tres estilos, tres inspiraciones de la zona. Producimos en lotes chicos.</p>
+          <!-- Datos de contacto -->
+          <fieldset class="campo-grupo">
+            <legend>Datos de contacto</legend>
 
-        <img
-          class="cervezas-grupo"
-          src="img/cervezas-grupo.jpg"
-          alt="Las tres cervezas de Andén: Caldén roja robusta, Quinto rubia lupulada y Estación negra tostada, sobre una mesa de madera con un cartel de ANDÉN y una locomotora antigua de fondo."
-        />
+            <div class="campo">
+              <label for="nombre">Nombre y apellido <span class="campo-obligatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+            </div>
 
-        <p class="cervezas-cta">
-          <a class="boton boton-primario" href="cervezas.html">Ver todas las cervezas</a>
-        </p>
+            <div class="campo">
+              <label for="whatsapp">WhatsApp <span class="campo-obligatorio" aria-hidden="true">*</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234 5678" required />
+            </div>
+
+            <div class="campo">
+              <label for="email">Email <span class="campo-opcional">(opcional)</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" />
+            </div>
+
+            <div class="campo">
+              <label for="localidad">Localidad o barrio <span class="campo-obligatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="localidad" name="localidad" autocomplete="address-level2" required />
+            </div>
+          </fieldset>
+
+          <!-- Cervezas -->
+          <fieldset class="campo-grupo">
+            <legend>¿Qué querés pedir?</legend>
+            <p class="campo-ayuda">Botellas de 500 ml. Sumá al menos una.</p>
+
+            <div class="cervezas-pedido">
+              <div class="cerveza-pedido">
+                <img class="cerveza-pedido-imagen" src="img/calden.jpg" alt="" aria-hidden="true" />
+                <label class="cerveza-pedido-nombre" for="cantidad-calden">Caldén</label>
+                <input class="cerveza-pedido-cantidad" type="number" id="cantidad-calden" name="calden" min="0" step="1" value="0" inputmode="numeric" aria-label="Cantidad de Caldén" />
+              </div>
+
+              <div class="cerveza-pedido">
+                <img class="cerveza-pedido-imagen" src="img/quinto.jpg" alt="" aria-hidden="true" />
+                <label class="cerveza-pedido-nombre" for="cantidad-quinto">Quinto</label>
+                <input class="cerveza-pedido-cantidad" type="number" id="cantidad-quinto" name="quinto" min="0" step="1" value="0" inputmode="numeric" aria-label="Cantidad de Quinto" />
+              </div>
+
+              <div class="cerveza-pedido">
+                <img class="cerveza-pedido-imagen" src="img/estacion.jpg" alt="" aria-hidden="true" />
+                <label class="cerveza-pedido-nombre" for="cantidad-estacion">Estación</label>
+                <input class="cerveza-pedido-cantidad" type="number" id="cantidad-estacion" name="estacion" min="0" step="1" value="0" inputmode="numeric" aria-label="Cantidad de Estación" />
+              </div>
+            </div>
+
+            <p class="pedido-total" aria-live="polite">
+              Total: <strong id="pedido-total-numero">0</strong> botellas
+            </p>
+            <p class="pedido-ayuda" id="pedido-ayuda" aria-live="polite"></p>
+          </fieldset>
+
+          <!-- Entrega -->
+          <fieldset class="campo-grupo">
+            <legend>Entrega</legend>
+            <div class="pedido-entrega">
+              <label>
+                <input type="radio" name="entrega" value="retiro" checked />
+                Retiro en fábrica
+              </label>
+              <label>
+                <input type="radio" name="entrega" value="envio" />
+                Envío a domicilio
+              </label>
+            </div>
+            <p class="campo-ayuda">Coordinamos el costo del envío por WhatsApp según la zona.</p>
+          </fieldset>
+
+          <!-- Notas -->
+          <fieldset class="campo-grupo">
+            <legend>Notas <span class="campo-opcional">(opcional)</span></legend>
+            <div class="campo">
+              <label for="notas" class="campo-ayuda">¿Algo que quieras contarnos? Fecha para retirar, alguna preferencia, lo que sea.</label>
+              <textarea id="notas" name="notas" rows="3"></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Mensaje de estado -->
+          <p class="pedido-mensaje" id="pedido-mensaje" role="status" aria-live="polite"></p>
+
+          <!-- Botón de acción -->
+          <div class="pedido-acciones">
+            <button type="submit" class="boton boton-primario" id="boton-pedido" disabled>
+              Agregá al menos una cerveza
+            </button>
+          </div>
+
+        </form>
       </div>
     </section>
 
@@ -107,9 +168,6 @@
 
   </main>
 
-  <!-- ==========================================================
-       PIE DE PÁGINA
-       ========================================================== -->
   <footer class="pie" id="contacto">
     <div class="contenedor pie-interno">
       <p class="pie-aviso">Prohibida la venta a menores de 18 años. Bebé con moderación.</p>
@@ -117,13 +175,11 @@
         <p>contacto@anden.com.ar</p>
         <p>Estación Central, Argentina</p>
       </address>
-      <p class="pie-pedido">
-        <a class="boton boton-primario" href="pedido.html">Hacer un pedido</a>
-      </p>
       <p class="pie-credito">Fotografías de archivo: estaciones ferroviarias argentinas, circa 1900 (dominio público).</p>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
+  <script src="js/pedido.js"></script>
 </body>
 </html>
