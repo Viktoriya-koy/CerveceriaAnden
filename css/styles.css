@@ -10,19 +10,18 @@
 
 /* ---------- 1. Variables de color y valores reutilizables ---------- */
 :root {
-  --verde-oscuro: #1d3a2a;   /* verde profundo, color principal */
-  --verde-sombra: #12261b;   /* verde casi negro, fondos oscuros */
-  --oxido: #9a4b25;          /* naranja quemado del hierro oxidado */
-  --crema: #f4ecdd;          /* crema viejo de carteles */
-  --crema-suave: #faf5e9;    /* fondo general claro */
-  --dorado: #b08d3e;         /* dorado viejo, acentos y foco */
-  --hierro: #262626;         /* gris oscuro para textos */
-  --borde: #d8cdb6;          /* bordes suaves */
-  --radio: 0.5rem;           /* redondeado estándar */
+  --verde-oscuro: #1d3a2a;
+  --verde-sombra: #12261b;
+  --oxido: #9a4b25;
+  --crema: #f4ecdd;
+  --crema-suave: #faf5e9;
+  --dorado: #b08d3e;
+  --hierro: #262626;
+  --borde: #d8cdb6;
+  --radio: 0.5rem;
 }
 
 /* ---------- 2. Reset básico y tipografías ---------- */
-/* Con box-sizing: border-box el padding no agranda las cajas */
 *,
 *::before,
 *::after {
@@ -30,7 +29,7 @@
 }
 
 html {
-  scroll-behavior: smooth; /* desplazamiento suave al navegar por anclas */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -41,7 +40,6 @@ body {
   line-height: 1.6;
 }
 
-/* Títulos con serif robusta, al estilo de carteles ferroviarios */
 h1,
 h2,
 h3 {
@@ -54,7 +52,6 @@ p {
   margin: 0 0 1em;
 }
 
-/* Las imágenes nunca se salen de su contenedor */
 img {
   max-width: 100%;
   height: auto;
@@ -68,7 +65,6 @@ button:focus-visible,
   outline-offset: 3px;
 }
 
-/* Respeta usuarios que prefieren menos animación */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -76,13 +72,11 @@ button:focus-visible,
 }
 
 /* ---------- 4. Utilidades ---------- */
-/* Contenedor centrado que no se estira de más en pantallas grandes */
 .contenedor {
   width: min(100% - 2rem, 70rem);
   margin-inline: auto;
 }
 
-/* Enlace "saltar al contenido": oculto hasta recibir foco con teclado */
 .salto-contenido {
   position: absolute;
   top: -100%;
@@ -100,7 +94,7 @@ button:focus-visible,
 /* ---------- 5. Botones ---------- */
 .boton {
   display: inline-block;
-  font: inherit;            /* hereda la tipografía del cuerpo */
+  font: inherit;
   font-weight: 700;
   padding: 0.75rem 1.5rem;
   border: 2px solid transparent;
@@ -124,11 +118,19 @@ button:focus-visible,
 .boton-secundario:hover {
   background: rgba(244, 236, 221, 0.12);
 }
+.boton-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+}
+.boton-whatsapp:hover {
+  background: #1eb956;
+}
+.boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 
 /* ---------- 6. Compuerta de edad ---------- */
-/* Cubre toda la pantalla por encima de todo (z-index alto).
-   De fondo: foto de andén vintage con velo verde oscuro
-   para que el texto conserve contraste. */
 .compuerta-edad {
   position: fixed;
   inset: 0;
@@ -137,7 +139,7 @@ button:focus-visible,
   place-items: center;
   padding: 1rem;
   color: var(--crema);
-  background-color: var(--verde-sombra); /* respaldo si la foto no carga */
+  background-color: var(--verde-sombra);
   background-image:
     linear-gradient(rgba(18, 38, 27, 0.82), rgba(18, 38, 27, 0.9)),
     url("../img/anden-vintage.jpg");
@@ -145,14 +147,10 @@ button:focus-visible,
   background-position: center;
 }
 
-/* Cuando JavaScript le pone el atributo hidden a la compuerta,
-   esta regla gana por especificidad (clase + atributo) sobre el
-   display: grid de .compuerta-edad. Así se oculta sin !important. */
 .compuerta-edad[hidden] {
   display: none;
 }
 
-/* La caja tiene forma de boleto: doble borde crema y línea cortada */
 .compuerta-caja {
   width: min(100%, 26rem);
   padding: 2rem 1.5rem;
@@ -171,7 +169,7 @@ button:focus-visible,
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  border-bottom: 2px dashed rgba(244, 236, 221, 0.4); /* línea de boleto */
+  border-bottom: 2px dashed rgba(244, 236, 221, 0.4);
 }
 .compuerta-titulo {
   font-size: 1.75rem;
@@ -183,10 +181,8 @@ button:focus-visible,
   margin-top: 1.5rem;
 }
 
-/* Mientras el sitio está bloqueado, el contenido queda oculto
-   (también para tecnologías asistivas, porque no se renderiza) */
 body.bloqueado {
-  overflow: hidden; /* evita que se desplace el fondo */
+  overflow: hidden;
 }
 body.bloqueado .encabezado,
 body.bloqueado main,
@@ -195,14 +191,11 @@ body.bloqueado .pie {
 }
 
 /* ---------- 7. Encabezado ---------- */
-/* Cartel de estación: verde oscuro con filete dorado */
 .encabezado {
   background: var(--verde-oscuro);
   color: var(--crema);
   border-bottom: 4px solid var(--dorado);
 }
-/* En celular: logo arriba y menú debajo, centrados.
-   En pantallas grandes pasan a una misma fila (ver media query). */
 .encabezado-interno {
   display: flex;
   flex-direction: column;
@@ -222,7 +215,7 @@ body.bloqueado .pie {
   text-decoration: none;
 }
 .logo-icono {
-  color: var(--dorado); /* la locomotora va en dorado viejo */
+  color: var(--dorado);
 }
 .navegacion ul {
   display: flex;
@@ -243,29 +236,25 @@ body.bloqueado .pie {
 .navegacion a:hover {
   border-color: var(--dorado);
 }
-/* La página actual queda marcada con un subrayado dorado permanente */
 .navegacion a[aria-current="page"] {
   border-color: var(--dorado);
 }
 
-/* ---------- 8. Hero: estación de trenes de fondo ---------- */
-/* Foto de archivo de una estación argentina (ca. 1900) con un
-   velo verde que oscurece hacia abajo para leer el texto. */
+/* ---------- 8. Hero y franja de título ---------- */
 .hero {
-  min-height: 82vh;              /* casi toda la pantalla, para darle drama */
+  min-height: 82vh;
   display: grid;
   align-items: center;
   padding: 4.5rem 0;
   text-align: center;
   color: var(--crema);
-  background-color: var(--verde-sombra); /* respaldo si la foto no carga */
+  background-color: var(--verde-sombra);
   background-image:
     linear-gradient(rgba(18, 38, 27, 0.45), rgba(18, 38, 27, 0.9)),
     url("../img/estacion-1900.jpg");
   background-size: cover;
   background-position: center;
 }
-/* Cartel colgante estilo nombre de estación */
 .hero-cartel {
   display: inline-block;
   padding: 0.45rem 1.4rem;
@@ -280,10 +269,9 @@ body.bloqueado .pie {
   border: 2px solid var(--dorado);
   border-radius: 0.25rem;
 }
-/* clamp() hace que el título crezca entre 2rem y 3.5rem según la pantalla */
 .hero-titulo {
   font-size: clamp(2rem, 6vw, 3.5rem);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5); /* mejora lectura sobre la foto */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 .hero-frase {
   max-width: 32rem;
@@ -292,8 +280,6 @@ body.bloqueado .pie {
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Franja de título para páginas internas (como cervezas.html).
-   Usa la misma estética del hero pero más compacta y sin foto. */
 .pagina-encabezado {
   padding: 3rem 0 2rem;
   text-align: center;
@@ -301,12 +287,10 @@ body.bloqueado .pie {
   background-color: var(--verde-oscuro);
 }
 
-/* ---------- 9. Vía férrea: separador decorativo ---------- */
-/* Dos rieles grises (arriba y abajo) con durmientes de madera
-   repetidos, sobre balasto oscuro. Todo hecho con CSS, sin imágenes. */
+/* ---------- 9. Vía férrea ---------- */
 .via {
   height: 1.5rem;
-  background-color: #2e241b; /* balasto */
+  background-color: #2e241b;
   background-image:
     linear-gradient(#9a9a9a, #9a9a9a),
     linear-gradient(#9a9a9a, #9a9a9a),
@@ -327,7 +311,6 @@ body.bloqueado .pie {
 .seccion-texto {
   max-width: 40rem;
 }
-/* Grid de una columna en celular; 3 columnas en escritorio */
 .cervezas-lista {
   display: grid;
   gap: 1.5rem;
@@ -340,21 +323,14 @@ body.bloqueado .pie {
   border-top: 6px solid var(--oxido);
   border-radius: var(--radio);
 }
-
-/* Imagen grupal de las cervezas en la home.
-   Se centra, ocupa todo el ancho del contenedor y tiene
-   un tope máximo para no estirarse en pantallas muy anchas. */
 .cervezas-grupo {
   display: block;
   width: 100%;
   max-width: 48rem;
   margin: 2rem auto 0;
   border-radius: var(--radio);
-  box-shadow: 0 12px 32px rgba(18, 38, 27, 0.18); /* sombra suave de profundidad */
+  box-shadow: 0 12px 32px rgba(18, 38, 27, 0.18);
 }
-
-/* Imagen individual dentro de cada tarjeta del catálogo.
-   aspect-ratio la mantiene cuadrada; object-fit evita que se deforme. */
 .tarjeta-imagen {
   display: block;
   width: 100%;
@@ -363,7 +339,6 @@ body.bloqueado .pie {
   border-radius: var(--radio);
   margin-bottom: 1rem;
 }
-
 .tarjeta-nombre {
   margin-bottom: 0.1em;
   color: var(--verde-oscuro);
@@ -385,8 +360,6 @@ body.bloqueado .pie {
   color: #555555;
   font-size: 0.875rem;
 }
-
-/* Botón grande al final del bloque de cervezas destacadas del index */
 .cervezas-cta {
   margin-top: 2rem;
   text-align: center;
@@ -405,7 +378,7 @@ body.bloqueado .pie {
   color: var(--dorado);
 }
 .pie-contacto {
-  font-style: normal; /* <address> viene en cursiva por defecto */
+  font-style: normal;
 }
 .pie-contacto p {
   margin-bottom: 0.25rem;
@@ -416,10 +389,13 @@ body.bloqueado .pie {
   font-size: 0.75rem;
   color: rgba(244, 236, 221, 0.55);
 }
+.pie-pedido {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
 
 /* ---------- 12. Media queries: pantallas grandes ---------- */
 @media (min-width: 48rem) {
-  /* Encabezado en una fila: logo a la izquierda, menú a la derecha */
   .encabezado-interno {
     flex-direction: row;
     justify-content: space-between;
@@ -427,8 +403,198 @@ body.bloqueado .pie {
   .navegacion ul {
     justify-content: flex-end;
   }
-  /* Tres tarjetas de cerveza por fila */
   .cervezas-lista {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- 13. Formulario de pedido ---------- */
+.pedido {
+  padding: 3.5rem 0;
+}
+.formulario-pedido {
+  max-width: 42rem;
+  margin-top: 2rem;
+}
+.campo-grupo {
+  padding: 1.5rem;
+  margin: 0 0 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--dorado);
+  border-radius: var(--radio);
+}
+.campo-grupo legend {
+  padding: 0 0.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+.campo {
+  margin-bottom: 1rem;
+}
+.campo:last-child {
+  margin-bottom: 0;
+}
+.campo label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="tel"],
+.campo textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  color: var(--hierro);
+  background: var(--crema-suave);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+}
+.campo input:focus,
+.campo textarea:focus {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
+  border-color: var(--dorado);
+}
+.campo-ayuda {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+.campo-opcional {
+  font-weight: 400;
+  color: #666;
+  font-size: 0.85rem;
+}
+.campo-obligatorio {
+  color: var(--oxido);
+}
+.cervezas-pedido {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.cerveza-pedido {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr 5rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--crema-suave);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+.cerveza-pedido-imagen {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+}
+.cerveza-pedido-nombre {
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+.cerveza-pedido-cantidad {
+  width: 100%;
+  padding: 0.5rem;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--hierro);
+  background: #ffffff;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+}
+.cerveza-pedido-cantidad:focus {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
+  border-color: var(--dorado);
+}
+.pedido-total {
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.15rem;
+  color: var(--verde-oscuro);
+}
+.pedido-total strong {
+  font-size: 1.5rem;
+}
+.pedido-ayuda {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  min-height: 1.2em;
+}
+.pedido-entrega {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.pedido-entrega label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  background: var(--crema-suave);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  font-weight: 400;
+}
+.pedido-entrega input[type="radio"] {
+  margin: 0;
+  accent-color: var(--dorado);
+  width: 1.15rem;
+  height: 1.15rem;
+}
+.pedido-entrega label:has(input:checked) {
+  border-color: var(--dorado);
+  background: rgba(176, 141, 62, 0.12);
+}
+.pedido-mensaje {
+  padding: 0.85rem 1rem;
+  margin: 0 0 1rem;
+  border-radius: var(--radio);
+  font-weight: 700;
+}
+.pedido-mensaje:empty {
+  display: none;
+}
+.pedido-mensaje--error {
+  color: #7a2a1a;
+  background: #fbe8e3;
+  border: 2px solid #d8a99a;
+}
+.pedido-mensaje--exito {
+  color: var(--verde-oscuro);
+  background: #e8f1e9;
+  border: 2px solid #a9c4ad;
+}
+.pedido-acciones {
+  text-align: center;
+}
+.pedido-acciones .boton {
+  width: 100%;
+  max-width: 24rem;
+}
+
+@media (min-width: 48rem) {
+  .cervezas-pedido {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cerveza-pedido {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .cerveza-pedido-cantidad {
+    max-width: 5rem;
   }
 }
