@@ -1,600 +1,187 @@
-/* ============================================================
-   ANDÉN · styles.css
-   Identidad: patrimonio ferroviario argentino.
-   Hierro, verde oscuro, óxido, crema y dorado viejo.
-   Fotos de archivo: carpeta /img (estación ca. 1900 y andén).
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hacer un pedido · ANDÉN</title>
+  <meta name="description" content="Hacé tu pedido de cerveza artesanal ANDÉN. Menos de 6 botellas por WhatsApp, 6 o más por formulario." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-   Estrategia: MOBILE-FIRST.
-   Estilos base para celular; se amplían con media queries.
-   ============================================================ */
+<body class="bloqueado">
 
-/* ---------- 1. Variables de color y valores reutilizables ---------- */
-:root {
-  --verde-oscuro: #1d3a2a;
-  --verde-sombra: #12261b;
-  --oxido: #9a4b25;
-  --crema: #f4ecdd;
-  --crema-suave: #faf5e9;
-  --dorado: #b08d3e;
-  --hierro: #262626;
-  --borde: #d8cdb6;
-  --radio: 0.5rem;
-}
+  <a class="salto-contenido" href="#contenido">Saltar al contenido principal</a>
 
-/* ---------- 2. Reset básico y tipografías ---------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+  <!-- COMPUERTA DE EDAD -->
+  <div class="compuerta-edad" id="compuerta-edad" role="dialog" aria-modal="true" aria-labelledby="titulo-compuerta">
+    <div class="compuerta-caja">
+      <div id="compuerta-pregunta">
+        <p class="compuerta-kicker">Boleto de entrada · Cervecería artesanal</p>
+        <h1 class="compuerta-titulo" id="titulo-compuerta">¿Tenés 18 años o más?</h1>
+        <p class="compuerta-texto">Este sitio es solo para mayores de edad.</p>
+        <div class="compuerta-acciones">
+          <button type="button" class="boton boton-primario" id="boton-si">Sí</button>
+          <button type="button" class="boton boton-secundario" id="boton-no">No</button>
+        </div>
+      </div>
+      <div id="compuerta-rechazo" hidden>
+        <h2 class="compuerta-titulo" id="titulo-rechazo">No podés ingresar</h2>
+        <p class="compuerta-texto">Este sitio es solo para mayores de 18 años. Gracias por tu comprensión.</p>
+      </div>
+    </div>
+  </div>
 
-html {
-  scroll-behavior: smooth;
-}
+  <!-- ENCABEZADO -->
+  <header class="encabezado">
+    <div class="contenedor encabezado-interno">
+      <a class="logo" href="index.html" aria-label="ANDÉN, ir al inicio">
+        <svg class="logo-icono" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M12 2C8.7 2 7 2.8 7 4v7c0 1.2 2.1 2 5 2s5-.8 5-2V4c0-1.2-1.7-2-5-2zM5 5v5H3V5h2zm14 0h2v5h-2V5zM6.5 15a1.8 1.8 0 1 1 0 3.6A1.8 1.8 0 0 1 6.5 15zm11 0a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM4 20.5h16V22H4v-1.5z"/>
+        </svg>
+        <span>ANDÉN</span>
+      </a>
+      <nav class="navegacion" aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="cervezas.html">Cervezas</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color: var(--hierro);
-  background-color: var(--crema-suave);
-  line-height: 1.6;
-}
+  <main id="contenido">
 
-h1,
-h2,
-h3 {
-  font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.2;
-  margin: 0 0 0.5em;
-}
+    <!-- Franja de título -->
+    <section class="pagina-encabezado" aria-labelledby="titulo-pagina">
+      <div class="contenedor">
+        <p class="hero-cartel">Boleto de pedido</p>
+        <h1 class="hero-titulo" id="titulo-pagina">Hacer un pedido</h1>
+        <p class="hero-frase">Elegí tus cervezas. Con menos de 6 botellas te llevamos a WhatsApp; con 6 o más, completás el formulario.</p>
+      </div>
+    </section>
 
-p {
-  margin: 0 0 1em;
-}
+    <div class="via" aria-hidden="true"></div>
 
-img {
-  max-width: 100%;
-  height: auto;
-}
+    <!-- Formulario -->
+    <section class="pedido" aria-labelledby="titulo-formulario">
+      <div class="contenedor">
+        <h2 class="seccion-titulo" id="titulo-formulario">Tu pedido</h2>
+        <p class="seccion-texto">Producimos en lotes chicos. Al confirmar el pedido te escribimos para coordinar pago y entrega.</p>
 
-/* ---------- 3. Accesibilidad: foco visible siempre ---------- */
-a:focus-visible,
-button:focus-visible,
-[tabindex="-1"]:focus-visible {
-  outline: 3px solid var(--dorado);
-  outline-offset: 3px;
-}
+        <form class="formulario-pedido" id="formulario-pedido" novalidate>
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
+          <!-- Datos de contacto -->
+          <fieldset class="campo-grupo">
+            <legend>Datos de contacto</legend>
 
-/* ---------- 4. Utilidades ---------- */
-.contenedor {
-  width: min(100% - 2rem, 70rem);
-  margin-inline: auto;
-}
+            <div class="campo">
+              <label for="nombre">Nombre y apellido <span class="campo-obligatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+            </div>
 
-.salto-contenido {
-  position: absolute;
-  top: -100%;
-  left: 1rem;
-  z-index: 200;
-  padding: 0.75rem 1rem;
-  background: var(--verde-oscuro);
-  color: var(--crema);
-  border-radius: var(--radio);
-}
-.salto-contenido:focus {
-  top: 1rem;
-}
+            <div class="campo">
+              <label for="whatsapp">WhatsApp <span class="campo-obligatorio" aria-hidden="true">*</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="+54 9 11 1234 5678" required />
+            </div>
 
-/* ---------- 5. Botones ---------- */
-.boton {
-  display: inline-block;
-  font: inherit;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid transparent;
-  border-radius: var(--radio);
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-}
-.boton-primario {
-  background: var(--dorado);
-  color: #1a1a1a;
-}
-.boton-primario:hover {
-  background: #c39c47;
-}
-.boton-secundario {
-  background: transparent;
-  color: var(--crema);
-  border-color: var(--crema);
-}
-.boton-secundario:hover {
-  background: rgba(244, 236, 221, 0.12);
-}
-.boton-whatsapp {
-  background: #25d366;
-  color: #ffffff;
-}
-.boton-whatsapp:hover {
-  background: #1eb956;
-}
-.boton:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
+            <div class="campo">
+              <label for="email">Email <span class="campo-opcional">(opcional)</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" />
+            </div>
 
-/* ---------- 6. Compuerta de edad ---------- */
-.compuerta-edad {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  color: var(--crema);
-  background-color: var(--verde-sombra);
-  background-image:
-    linear-gradient(rgba(18, 38, 27, 0.82), rgba(18, 38, 27, 0.9)),
-    url("../img/anden-vintage.jpg");
-  background-size: cover;
-  background-position: center;
-}
+            <div class="campo">
+              <label for="localidad">Localidad o barrio <span class="campo-obligatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="localidad" name="localidad" autocomplete="address-level2" required />
+            </div>
+          </fieldset>
 
-.compuerta-edad[hidden] {
-  display: none;
-}
+          <!-- Cervezas -->
+          <fieldset class="campo-grupo">
+            <legend>¿Qué querés pedir?</legend>
+            <p class="campo-ayuda">Botellas de 500 ml. Sumá al menos una.</p>
 
-.compuerta-caja {
-  width: min(100%, 26rem);
-  padding: 2rem 1.5rem;
-  text-align: center;
-  background: rgba(18, 38, 27, 0.92);
-  border: 2px solid var(--crema);
-  outline: 2px dashed var(--dorado);
-  outline-offset: -0.6rem;
-  border-radius: var(--radio);
-}
-.compuerta-kicker {
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  color: var(--dorado);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  border-bottom: 2px dashed rgba(244, 236, 221, 0.4);
-}
-.compuerta-titulo {
-  font-size: 1.75rem;
-}
-.compuerta-acciones {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
+            <div class="cervezas-pedido">
+              <div class="cerveza-pedido">
+                <img class="cerveza-pedido-imagen" src="img/calden.jpg" alt="" aria-hidden="true" />
+                <label class="cerveza-pedido-nombre" for="cantidad-calden">Caldén</label>
+                <input class="cerveza-pedido-cantidad" type="number" id="cantidad-calden" name="calden" min="0" step="1" value="0" inputmode="numeric" aria-label="Cantidad de Caldén" />
+              </div>
 
-body.bloqueado {
-  overflow: hidden;
-}
-body.bloqueado .encabezado,
-body.bloqueado main,
-body.bloqueado .pie {
-  display: none;
-}
+              <div class="cerveza-pedido">
+                <img class="cerveza-pedido-imagen" src="img/quinto.jpg" alt="" aria-hidden="true" />
+                <label class="cerveza-pedido-nombre" for="cantidad-quinto">Quinto</label>
+                <input class="cerveza-pedido-cantidad" type="number" id="cantidad-quinto" name="quinto" min="0" step="1" value="0" inputmode="numeric" aria-label="Cantidad de Quinto" />
+              </div>
 
-/* ---------- 7. Encabezado ---------- */
-.encabezado {
-  background: var(--verde-oscuro);
-  color: var(--crema);
-  border-bottom: 4px solid var(--dorado);
-}
-.encabezado-interno {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 0;
-}
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--crema);
-  text-decoration: none;
-}
-.logo-icono {
-  color: var(--dorado);
-}
-.navegacion ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem 1.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.navegacion a {
-  display: inline-block;
-  padding: 0.35rem 0.1rem;
-  color: var(--crema);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-}
-.navegacion a:hover {
-  border-color: var(--dorado);
-}
-.navegacion a[aria-current="page"] {
-  border-color: var(--dorado);
-}
+              <div class="cerveza-pedido">
+                <img class="cerveza-pedido-imagen" src="img/estacion.jpg" alt="" aria-hidden="true" />
+                <label class="cerveza-pedido-nombre" for="cantidad-estacion">Estación</label>
+                <input class="cerveza-pedido-cantidad" type="number" id="cantidad-estacion" name="estacion" min="0" step="1" value="0" inputmode="numeric" aria-label="Cantidad de Estación" />
+              </div>
+            </div>
 
-/* ---------- 8. Hero y franja de título ---------- */
-.hero {
-  min-height: 82vh;
-  display: grid;
-  align-items: center;
-  padding: 4.5rem 0;
-  text-align: center;
-  color: var(--crema);
-  background-color: var(--verde-sombra);
-  background-image:
-    linear-gradient(rgba(18, 38, 27, 0.45), rgba(18, 38, 27, 0.9)),
-    url("../img/estacion-1900.jpg");
-  background-size: cover;
-  background-position: center;
-}
-.hero-cartel {
-  display: inline-block;
-  padding: 0.45rem 1.4rem;
-  margin-bottom: 1.25rem;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--dorado);
-  background: rgba(18, 38, 27, 0.75);
-  border: 2px solid var(--dorado);
-  border-radius: 0.25rem;
-}
-.hero-titulo {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-}
-.hero-frase {
-  max-width: 32rem;
-  margin-inline: auto;
-  font-size: 1.125rem;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-}
+            <p class="pedido-total" aria-live="polite">
+              Total: <strong id="pedido-total-numero">0</strong> botellas
+            </p>
+            <p class="pedido-ayuda" id="pedido-ayuda" aria-live="polite"></p>
+          </fieldset>
 
-.pagina-encabezado {
-  padding: 3rem 0 2rem;
-  text-align: center;
-  color: var(--crema);
-  background-color: var(--verde-oscuro);
-}
+          <!-- Entrega -->
+          <fieldset class="campo-grupo">
+            <legend>Entrega</legend>
+            <div class="pedido-entrega">
+              <label>
+                <input type="radio" name="entrega" value="retiro" checked />
+                Retiro en fábrica
+              </label>
+              <label>
+                <input type="radio" name="entrega" value="envio" />
+                Envío a domicilio
+              </label>
+            </div>
+            <p class="campo-ayuda">Coordinamos el costo del envío por WhatsApp según la zona.</p>
+          </fieldset>
 
-/* ---------- 9. Vía férrea ---------- */
-.via {
-  height: 1.5rem;
-  background-color: #2e241b;
-  background-image:
-    linear-gradient(#9a9a9a, #9a9a9a),
-    linear-gradient(#9a9a9a, #9a9a9a),
-    repeating-linear-gradient(90deg, #55402e 0 0.4rem, transparent 0.4rem 1.05rem);
-  background-size: 100% 0.22rem, 100% 0.22rem, 100% 0.6rem;
-  background-position: top, bottom, center;
-  background-repeat: no-repeat, no-repeat, repeat-x;
-}
+          <!-- Notas -->
+          <fieldset class="campo-grupo">
+            <legend>Notas <span class="campo-opcional">(opcional)</span></legend>
+            <div class="campo">
+              <label for="notas" class="campo-ayuda">¿Algo que quieras contarnos? Fecha para retirar, alguna preferencia, lo que sea.</label>
+              <textarea id="notas" name="notas" rows="3"></textarea>
+            </div>
+          </fieldset>
 
-/* ---------- 10. Sección Cervezas ---------- */
-.cervezas {
-  padding: 3.5rem 0;
-}
-.seccion-titulo {
-  color: var(--verde-oscuro);
-  font-size: 2rem;
-}
-.seccion-texto {
-  max-width: 40rem;
-}
-.cervezas-lista {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-.tarjeta {
-  padding: 1.5rem;
-  background: #ffffff;
-  border: 1px solid var(--borde);
-  border-top: 6px solid var(--oxido);
-  border-radius: var(--radio);
-}
-.cervezas-grupo {
-  display: block;
-  width: 100%;
-  max-width: 48rem;
-  margin: 2rem auto 0;
-  border-radius: var(--radio);
-  box-shadow: 0 12px 32px rgba(18, 38, 27, 0.18);
-}
-.tarjeta-imagen {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: var(--radio);
-  margin-bottom: 1rem;
-}
-.tarjeta-nombre {
-  margin-bottom: 0.1em;
-  color: var(--verde-oscuro);
-  font-size: 1.5rem;
-}
-.tarjeta-estilo {
-  margin-bottom: 0.75em;
-  color: var(--oxido);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.tarjeta-detalle {
-  margin-bottom: 0.5em;
-}
-.tarjeta-graduacion {
-  margin-bottom: 0;
-  color: #555555;
-  font-size: 0.875rem;
-}
-.cervezas-cta {
-  margin-top: 2rem;
-  text-align: center;
-}
+          <!-- Mensaje de estado (error o éxito) -->
+          <p class="pedido-mensaje" id="pedido-mensaje" role="status" aria-live="polite"></p>
 
-/* ---------- 11. Pie de página ---------- */
-.pie {
-  padding: 2.5rem 0;
-  text-align: center;
-  background: var(--verde-sombra);
-  color: var(--crema);
-  border-top: 4px solid var(--dorado);
-}
-.pie-aviso {
-  font-weight: 700;
-  color: var(--dorado);
-}
-.pie-contacto {
-  font-style: normal;
-}
-.pie-contacto p {
-  margin-bottom: 0.25rem;
-}
-.pie-credito {
-  margin-top: 1.25rem;
-  margin-bottom: 0;
-  font-size: 0.75rem;
-  color: rgba(244, 236, 221, 0.55);
-}
-.pie-pedido {
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
+          <!-- Botón de acción -->
+          <div class="pedido-acciones">
+            <button type="submit" class="boton boton-primario" id="boton-pedido" disabled>
+              Agregá al menos una cerveza
+            </button>
+          </div>
 
-/* ---------- 12. Media queries: pantallas grandes ---------- */
-@media (min-width: 48rem) {
-  .encabezado-interno {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .navegacion ul {
-    justify-content: flex-end;
-  }
-  .cervezas-lista {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+        </form>
+      </div>
+    </section>
 
-/* ---------- 13. Formulario de pedido ---------- */
-.pedido {
-  padding: 3.5rem 0;
-}
-.formulario-pedido {
-  max-width: 42rem;
-  margin-top: 2rem;
-}
-.campo-grupo {
-  padding: 1.5rem;
-  margin: 0 0 1.5rem;
-  background: #ffffff;
-  border: 1px solid var(--borde);
-  border-top: 6px solid var(--dorado);
-  border-radius: var(--radio);
-}
-.campo-grupo legend {
-  padding: 0 0.5rem;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--verde-oscuro);
-}
-.campo {
-  margin-bottom: 1rem;
-}
-.campo:last-child {
-  margin-bottom: 0;
-}
-.campo label {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-.campo input[type="text"],
-.campo input[type="email"],
-.campo input[type="tel"],
-.campo textarea {
-  width: 100%;
-  padding: 0.7rem 0.85rem;
-  font: inherit;
-  color: var(--hierro);
-  background: var(--crema-suave);
-  border: 2px solid var(--borde);
-  border-radius: var(--radio);
-}
-.campo input:focus,
-.campo textarea:focus {
-  outline: 3px solid var(--dorado);
-  outline-offset: 2px;
-  border-color: var(--dorado);
-}
-.campo-ayuda {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 0.5rem;
-}
-.campo-opcional {
-  font-weight: 400;
-  color: #666;
-  font-size: 0.85rem;
-}
-.campo-obligatorio {
-  color: var(--oxido);
-}
-.cervezas-pedido {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-}
-.cerveza-pedido {
-  display: grid;
-  grid-template-columns: 3.5rem 1fr 5rem;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background: var(--crema-suave);
-  border: 1px solid var(--borde);
-  border-radius: var(--radio);
-}
-.cerveza-pedido-imagen {
-  width: 3.5rem;
-  height: 3.5rem;
-  object-fit: cover;
-  border-radius: 0.35rem;
-}
-.cerveza-pedido-nombre {
-  font-weight: 700;
-  color: var(--verde-oscuro);
-}
-.cerveza-pedido-cantidad {
-  width: 100%;
-  padding: 0.5rem;
-  font: inherit;
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-align: center;
-  color: var(--hierro);
-  background: #ffffff;
-  border: 2px solid var(--borde);
-  border-radius: var(--radio);
-}
-.cerveza-pedido-cantidad:focus {
-  outline: 3px solid var(--dorado);
-  outline-offset: 2px;
-  border-color: var(--dorado);
-}
-.pedido-total {
-  margin-top: 1.25rem;
-  margin-bottom: 0.25rem;
-  font-size: 1.15rem;
-  color: var(--verde-oscuro);
-}
-.pedido-total strong {
-  font-size: 1.5rem;
-}
-.pedido-ayuda {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #666;
-  min-height: 1.2em;
-}
-.pedido-entrega {
-  display: grid;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-.pedido-entrega label {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem;
-  background: var(--crema-suave);
-  border: 2px solid var(--borde);
-  border-radius: var(--radio);
-  cursor: pointer;
-  font-weight: 400;
-}
-.pedido-entrega input[type="radio"] {
-  margin: 0;
-  accent-color: var(--dorado);
-  width: 1.15rem;
-  height: 1.15rem;
-}
-.pedido-entrega label:has(input:checked) {
-  border-color: var(--dorado);
-  background: rgba(176, 141, 62, 0.12);
-}
-.pedido-mensaje {
-  padding: 0.85rem 1rem;
-  margin: 0 0 1rem;
-  border-radius: var(--radio);
-  font-weight: 700;
-}
-.pedido-mensaje:empty {
-  display: none;
-}
-.pedido-mensaje--error {
-  color: #7a2a1a;
-  background: #fbe8e3;
-  border: 2px solid #d8a99a;
-}
-.pedido-mensaje--exito {
-  color: var(--verde-oscuro);
-  background: #e8f1e9;
-  border: 2px solid #a9c4ad;
-}
-.pedido-acciones {
-  text-align: center;
-}
-.pedido-acciones .boton {
-  width: 100%;
-  max-width: 24rem;
-}
+    <div class="via" aria-hidden="true"></div>
 
-@media (min-width: 48rem) {
-  .cervezas-pedido {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .cerveza-pedido {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    gap: 0.5rem;
-  }
-  .cerveza-pedido-cantidad {
-    max-width: 5rem;
-  }
-}
+  </main>
+
+  <footer class="pie" id="contacto">
+    <div class="contenedor pie-interno">
+      <p class="pie-aviso">Prohibida la venta a menores de 18 años. Bebé con moderación.</p>
+      <address class="pie-contacto">
+        <p>contacto@anden.com.ar</p>
+        <p>Estación Central, Argentina</p>
+      </address>
+      <p class="pie-credito">Fotografías de archivo: estaciones ferroviarias argentinas, circa 1900 (dominio público).</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/pedido.js"></script>
+</body>
+</html>
