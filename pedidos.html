@@ -1,0 +1,600 @@
+/* ============================================================
+   ANDÉN · styles.css
+   Identidad: patrimonio ferroviario argentino.
+   Hierro, verde oscuro, óxido, crema y dorado viejo.
+   Fotos de archivo: carpeta /img (estación ca. 1900 y andén).
+
+   Estrategia: MOBILE-FIRST.
+   Estilos base para celular; se amplían con media queries.
+   ============================================================ */
+
+/* ---------- 1. Variables de color y valores reutilizables ---------- */
+:root {
+  --verde-oscuro: #1d3a2a;
+  --verde-sombra: #12261b;
+  --oxido: #9a4b25;
+  --crema: #f4ecdd;
+  --crema-suave: #faf5e9;
+  --dorado: #b08d3e;
+  --hierro: #262626;
+  --borde: #d8cdb6;
+  --radio: 0.5rem;
+}
+
+/* ---------- 2. Reset básico y tipografías ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--hierro);
+  background-color: var(--crema-suave);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 3. Accesibilidad: foco visible siempre ---------- */
+a:focus-visible,
+button:focus-visible,
+[tabindex="-1"]:focus-visible {
+  outline: 3px solid var(--dorado);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- 4. Utilidades ---------- */
+.contenedor {
+  width: min(100% - 2rem, 70rem);
+  margin-inline: auto;
+}
+
+.salto-contenido {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: var(--verde-oscuro);
+  color: var(--crema);
+  border-radius: var(--radio);
+}
+.salto-contenido:focus {
+  top: 1rem;
+}
+
+/* ---------- 5. Botones ---------- */
+.boton {
+  display: inline-block;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+.boton-primario {
+  background: var(--dorado);
+  color: #1a1a1a;
+}
+.boton-primario:hover {
+  background: #c39c47;
+}
+.boton-secundario {
+  background: transparent;
+  color: var(--crema);
+  border-color: var(--crema);
+}
+.boton-secundario:hover {
+  background: rgba(244, 236, 221, 0.12);
+}
+.boton-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+}
+.boton-whatsapp:hover {
+  background: #1eb956;
+}
+.boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- 6. Compuerta de edad ---------- */
+.compuerta-edad {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--crema);
+  background-color: var(--verde-sombra);
+  background-image:
+    linear-gradient(rgba(18, 38, 27, 0.82), rgba(18, 38, 27, 0.9)),
+    url("../img/anden-vintage.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.compuerta-edad[hidden] {
+  display: none;
+}
+
+.compuerta-caja {
+  width: min(100%, 26rem);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: rgba(18, 38, 27, 0.92);
+  border: 2px solid var(--crema);
+  outline: 2px dashed var(--dorado);
+  outline-offset: -0.6rem;
+  border-radius: var(--radio);
+}
+.compuerta-kicker {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  color: var(--dorado);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-bottom: 2px dashed rgba(244, 236, 221, 0.4);
+}
+.compuerta-titulo {
+  font-size: 1.75rem;
+}
+.compuerta-acciones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+body.bloqueado {
+  overflow: hidden;
+}
+body.bloqueado .encabezado,
+body.bloqueado main,
+body.bloqueado .pie {
+  display: none;
+}
+
+/* ---------- 7. Encabezado ---------- */
+.encabezado {
+  background: var(--verde-oscuro);
+  color: var(--crema);
+  border-bottom: 4px solid var(--dorado);
+}
+.encabezado-interno {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--crema);
+  text-decoration: none;
+}
+.logo-icono {
+  color: var(--dorado);
+}
+.navegacion ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.navegacion a {
+  display: inline-block;
+  padding: 0.35rem 0.1rem;
+  color: var(--crema);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.navegacion a:hover {
+  border-color: var(--dorado);
+}
+.navegacion a[aria-current="page"] {
+  border-color: var(--dorado);
+}
+
+/* ---------- 8. Hero y franja de título ---------- */
+.hero {
+  min-height: 82vh;
+  display: grid;
+  align-items: center;
+  padding: 4.5rem 0;
+  text-align: center;
+  color: var(--crema);
+  background-color: var(--verde-sombra);
+  background-image:
+    linear-gradient(rgba(18, 38, 27, 0.45), rgba(18, 38, 27, 0.9)),
+    url("../img/estacion-1900.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.hero-cartel {
+  display: inline-block;
+  padding: 0.45rem 1.4rem;
+  margin-bottom: 1.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  background: rgba(18, 38, 27, 0.75);
+  border: 2px solid var(--dorado);
+  border-radius: 0.25rem;
+}
+.hero-titulo {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+.hero-frase {
+  max-width: 32rem;
+  margin-inline: auto;
+  font-size: 1.125rem;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.pagina-encabezado {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  color: var(--crema);
+  background-color: var(--verde-oscuro);
+}
+
+/* ---------- 9. Vía férrea ---------- */
+.via {
+  height: 1.5rem;
+  background-color: #2e241b;
+  background-image:
+    linear-gradient(#9a9a9a, #9a9a9a),
+    linear-gradient(#9a9a9a, #9a9a9a),
+    repeating-linear-gradient(90deg, #55402e 0 0.4rem, transparent 0.4rem 1.05rem);
+  background-size: 100% 0.22rem, 100% 0.22rem, 100% 0.6rem;
+  background-position: top, bottom, center;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+}
+
+/* ---------- 10. Sección Cervezas ---------- */
+.cervezas {
+  padding: 3.5rem 0;
+}
+.seccion-titulo {
+  color: var(--verde-oscuro);
+  font-size: 2rem;
+}
+.seccion-texto {
+  max-width: 40rem;
+}
+.cervezas-lista {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.tarjeta {
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--oxido);
+  border-radius: var(--radio);
+}
+.cervezas-grupo {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  margin: 2rem auto 0;
+  border-radius: var(--radio);
+  box-shadow: 0 12px 32px rgba(18, 38, 27, 0.18);
+}
+.tarjeta-imagen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radio);
+  margin-bottom: 1rem;
+}
+.tarjeta-nombre {
+  margin-bottom: 0.1em;
+  color: var(--verde-oscuro);
+  font-size: 1.5rem;
+}
+.tarjeta-estilo {
+  margin-bottom: 0.75em;
+  color: var(--oxido);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tarjeta-detalle {
+  margin-bottom: 0.5em;
+}
+.tarjeta-graduacion {
+  margin-bottom: 0;
+  color: #555555;
+  font-size: 0.875rem;
+}
+.cervezas-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* ---------- 11. Pie de página ---------- */
+.pie {
+  padding: 2.5rem 0;
+  text-align: center;
+  background: var(--verde-sombra);
+  color: var(--crema);
+  border-top: 4px solid var(--dorado);
+}
+.pie-aviso {
+  font-weight: 700;
+  color: var(--dorado);
+}
+.pie-contacto {
+  font-style: normal;
+}
+.pie-contacto p {
+  margin-bottom: 0.25rem;
+}
+.pie-credito {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  color: rgba(244, 236, 221, 0.55);
+}
+.pie-pedido {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- 12. Media queries: pantallas grandes ---------- */
+@media (min-width: 48rem) {
+  .encabezado-interno {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .navegacion ul {
+    justify-content: flex-end;
+  }
+  .cervezas-lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- 13. Formulario de pedido ---------- */
+.pedido {
+  padding: 3.5rem 0;
+}
+.formulario-pedido {
+  max-width: 42rem;
+  margin-top: 2rem;
+}
+.campo-grupo {
+  padding: 1.5rem;
+  margin: 0 0 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--dorado);
+  border-radius: var(--radio);
+}
+.campo-grupo legend {
+  padding: 0 0.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+.campo {
+  margin-bottom: 1rem;
+}
+.campo:last-child {
+  margin-bottom: 0;
+}
+.campo label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="tel"],
+.campo textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  color: var(--hierro);
+  background: var(--crema-suave);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+}
+.campo input:focus,
+.campo textarea:focus {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
+  border-color: var(--dorado);
+}
+.campo-ayuda {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+.campo-opcional {
+  font-weight: 400;
+  color: #666;
+  font-size: 0.85rem;
+}
+.campo-obligatorio {
+  color: var(--oxido);
+}
+.cervezas-pedido {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.cerveza-pedido {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr 5rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--crema-suave);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+.cerveza-pedido-imagen {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+}
+.cerveza-pedido-nombre {
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+.cerveza-pedido-cantidad {
+  width: 100%;
+  padding: 0.5rem;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--hierro);
+  background: #ffffff;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+}
+.cerveza-pedido-cantidad:focus {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
+  border-color: var(--dorado);
+}
+.pedido-total {
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.15rem;
+  color: var(--verde-oscuro);
+}
+.pedido-total strong {
+  font-size: 1.5rem;
+}
+.pedido-ayuda {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  min-height: 1.2em;
+}
+.pedido-entrega {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.pedido-entrega label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  background: var(--crema-suave);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  font-weight: 400;
+}
+.pedido-entrega input[type="radio"] {
+  margin: 0;
+  accent-color: var(--dorado);
+  width: 1.15rem;
+  height: 1.15rem;
+}
+.pedido-entrega label:has(input:checked) {
+  border-color: var(--dorado);
+  background: rgba(176, 141, 62, 0.12);
+}
+.pedido-mensaje {
+  padding: 0.85rem 1rem;
+  margin: 0 0 1rem;
+  border-radius: var(--radio);
+  font-weight: 700;
+}
+.pedido-mensaje:empty {
+  display: none;
+}
+.pedido-mensaje--error {
+  color: #7a2a1a;
+  background: #fbe8e3;
+  border: 2px solid #d8a99a;
+}
+.pedido-mensaje--exito {
+  color: var(--verde-oscuro);
+  background: #e8f1e9;
+  border: 2px solid #a9c4ad;
+}
+.pedido-acciones {
+  text-align: center;
+}
+.pedido-acciones .boton {
+  width: 100%;
+  max-width: 24rem;
+}
+
+@media (min-width: 48rem) {
+  .cervezas-pedido {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cerveza-pedido {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .cerveza-pedido-cantidad {
+    max-width: 5rem;
+  }
+}
