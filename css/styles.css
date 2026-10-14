@@ -214,8 +214,16 @@ body.bloqueado .pie {
   color: var(--crema);
   text-decoration: none;
 }
-.logo-icono {
-  color: var(--dorado);
+/* Imagen del logo (locomotora + espiga) dentro de un círculo crema.
+   Como el PNG tiene fondo blanco, el círculo lo integra al header verde. */
+.logo-imagen {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.2rem;
+  background: var(--crema);
+  border: 2px solid var(--dorado);
+  border-radius: 50%;
+  object-fit: contain;
 }
 .navegacion ul {
   display: flex;
