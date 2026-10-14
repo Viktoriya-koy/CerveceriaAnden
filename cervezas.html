@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cervezas · ANDÉN</title>
-  <meta name="description" content="Catálogo de cervezas artesanales de ANDÉN. Estilos, graduación y notas de cata." />
+  <meta name="description" content="Catálogo de cervezas artesanales de ANDÉN. Caldén, Quinto y Estación: estilos, graduación y notas de cata." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <!-- ENCABEZADO (mismo que index, pero "Cervezas" está marcado como actual) -->
+  <!-- ENCABEZADO -->
   <header class="encabezado">
     <div class="contenedor encabezado-interno">
       <a class="logo" href="index.html" aria-label="ANDÉN, ir al inicio">
@@ -57,7 +57,7 @@
       <div class="contenedor">
         <p class="hero-cartel">Catálogo</p>
         <h1 class="hero-titulo" id="titulo-pagina">Nuestras cervezas</h1>
-        <p class="hero-frase">Recetas en desarrollo. Cada estilo lleva el nombre de un lugar de la zona.</p>
+        <p class="hero-frase">Tres estilos, tres inspiraciones de la zona.</p>
       </div>
     </section>
 
@@ -72,7 +72,11 @@
         <div class="cervezas-lista">
 
           <article class="tarjeta">
-            <div class="tarjeta-etiqueta tarjeta-etiqueta--roja" role="img" aria-label="Etiqueta de color rojo óxido de la cerveza Caldén"></div>
+            <img
+              class="tarjeta-imagen"
+              src="img/calden.jpg"
+              alt="Botella de cerveza Caldén, roja robusta, con etiqueta rojo óxido y detalles dorados."
+            />
             <h3 class="tarjeta-nombre">Caldén</h3>
             <p class="tarjeta-estilo">Roja robusta</p>
             <p class="tarjeta-detalle">Notas a caramelo y pan tostado. Cuerpo pleno.</p>
@@ -80,7 +84,11 @@
           </article>
 
           <article class="tarjeta">
-            <div class="tarjeta-etiqueta tarjeta-etiqueta--dorada" role="img" aria-label="Etiqueta de color dorado viejo de la cerveza Quinto"></div>
+            <img
+              class="tarjeta-imagen"
+              src="img/quinto.jpg"
+              alt="Botella de cerveza Quinto, rubia lupulada, con etiqueta dorada vieja y un vaso de cerveza al lado."
+            />
             <h3 class="tarjeta-nombre">Quinto</h3>
             <p class="tarjeta-estilo">Rubia lupulada</p>
             <p class="tarjeta-detalle">Aromática y fresca. Amargor medio.</p>
@@ -88,7 +96,11 @@
           </article>
 
           <article class="tarjeta">
-            <div class="tarjeta-etiqueta tarjeta-etiqueta--negra" role="img" aria-label="Etiqueta de color verde oscuro de la cerveza Estación"></div>
+            <img
+              class="tarjeta-imagen"
+              src="img/estacion.jpg"
+              alt="Botella de cerveza Estación, negra tostada, con etiqueta verde oscuro, junto a un farol encendido y granos de café."
+            />
             <h3 class="tarjeta-nombre">Estación</h3>
             <p class="tarjeta-estilo">Negra tostada</p>
             <p class="tarjeta-detalle">Café y chocolate amargo. Final seco.</p>
