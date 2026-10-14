@@ -54,6 +54,12 @@ p {
   margin: 0 0 1em;
 }
 
+/* Las imágenes nunca se salen de su contenedor */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* ---------- 3. Accesibilidad: foco visible siempre ---------- */
 a:focus-visible,
 button:focus-visible,
@@ -334,22 +340,30 @@ body.bloqueado .pie {
   border-top: 6px solid var(--oxido);
   border-radius: var(--radio);
 }
-/* Rectángulo de color que simula la etiqueta de la botella.
-   Es decorativo pero con nombre accesible (role="img" + aria-label en el HTML). */
-.tarjeta-etiqueta {
-  height: 7rem;
-  margin-bottom: 1rem;
+
+/* Imagen grupal de las cervezas en la home.
+   Se centra, ocupa todo el ancho del contenedor y tiene
+   un tope máximo para no estirarse en pantallas muy anchas. */
+.cervezas-grupo {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  margin: 2rem auto 0;
   border-radius: var(--radio);
+  box-shadow: 0 12px 32px rgba(18, 38, 27, 0.18); /* sombra suave de profundidad */
 }
-.tarjeta-etiqueta--roja {
-  background: linear-gradient(135deg, var(--oxido), #6f3319);
+
+/* Imagen individual dentro de cada tarjeta del catálogo.
+   aspect-ratio la mantiene cuadrada; object-fit evita que se deforme. */
+.tarjeta-imagen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radio);
+  margin-bottom: 1rem;
 }
-.tarjeta-etiqueta--dorada {
-  background: linear-gradient(135deg, var(--dorado), #8a6c2c);
-}
-.tarjeta-etiqueta--negra {
-  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-sombra));
-}
+
 .tarjeta-nombre {
   margin-bottom: 0.1em;
   color: var(--verde-oscuro);
